@@ -1,8 +1,8 @@
-let store = Immutable.Map({
-  rovers: Immutable.List(["Curiosity", "Opportunity", "Spirit"]),
-  roverInfo: Immutable.Map({}),
-  roverPhotos: Immutable.List([]),
-  loading: false,
+let store = Immutable.fromJS({
+  rovers: ["Curiosity", "Opportunity", "Spirit"],
+  roverInfo: {},
+  roverPhotos: [],
+  loading: false
 });
 
 const ImageCarousel = (imageUrls) => {
@@ -135,7 +135,7 @@ const RoverInfoPage = (roverInfo, roverPhotos) => {
 const root = document.getElementById("root");
 
 const updateStore = (currentStore, newState) => {
-  store = currentStore.mergeDeep(Immutable.fromJS(newState));
+  store = currentStore.merge(Immutable.fromJS(newState));
   render(root, store);
 };
 
@@ -171,7 +171,12 @@ window.addEventListener("load", () => {
 });
 
 const getRoverDetails = (name) => {
-  updateStore(store, { loading: true });
+  updateStore(store, { 
+    loading: true,
+    roverInfo: {},
+    roverPhotos: []
+  });
+
   fetch(`http://localhost:3000/roverInfo/${name}`)
     .then((res) => res.json())
     .then((roverData) => {
