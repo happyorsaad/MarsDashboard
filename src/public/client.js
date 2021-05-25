@@ -95,22 +95,22 @@ const NavBar = (roverNames, onClickHandlerName) => {
   const html = `
         <nav class="navbar sticky-top navbar-expand-lg navbar-light bg-light">
             <div class="container-fluid">
-            <a class="navbar-brand" href="#">Mars Dashboard</a>
-                <button class="navbar-toggler"
-                        type="button"
-                        data-mdb-toggle="collapse"
-                        data-mdb-target="#navbarNavAltMarkup"
-                        aria-controls="navbarNavAltMarkup"
-                        aria-expanded="false"
-                        aria-label="Toggle navigation">
-                <i class="fas fa-bars"></i>
-                </button>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    ${roverNames.map(NavBarItem).join("\n")}
-                </ul>
+              <button class="navbar-toggler"
+                      type="button"
+                      data-mdb-toggle="collapse"
+                      data-mdb-target="#navbarSupportedContent"
+                      aria-controls="navbarSupportedContent"
+                      aria-expanded="false"
+                      aria-label="Toggle navigation">
+                  <i class="fas fa-bars"></i>
+              </button>
+              <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                  <a class="navbar-brand" href="#">Mars Dashboard</a>
+                  <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                      ${roverNames.map(NavBarItem).join("\n")}
+                  </ul>
+              </div>
             </div>
-        </div>
         </nav>
     `;
 
