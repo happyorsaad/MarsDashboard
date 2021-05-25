@@ -5,6 +5,8 @@ let store = Immutable.fromJS({
   loading: false
 });
 
+const joinReducer = (acc, val) => acc.concat(val);
+
 const ImageCarousel = (imageUrls) => {
   const Item = (url, active) => {
     return `
@@ -27,7 +29,7 @@ const ImageCarousel = (imageUrls) => {
         <!-- Inner -->
         <div class="carousel-inner">
           <!-- Single item -->
-          ${imageUrls.map((url, idx) => Item(url, idx === 0)).join("\n")}
+          ${imageUrls.map((url, idx) => Item(url, idx === 0)).reduce(joinReducer)}
         </div>
         <!-- Inner -->
         <!-- Controls -->
@@ -63,7 +65,7 @@ const RoverInfoTable = (data) => {
                 <tbody>
                     ${Object.keys(data)
                       .map((k) => Row(k, data[k]))
-                      .join("\n")}
+                      .reduce(joinReducer)}
                 </tbody>
             </table>
     `;
@@ -107,7 +109,7 @@ const NavBar = (roverNames, onClickHandlerName) => {
               <div class="collapse navbar-collapse" id="navbarSupportedContent">
                   <a class="navbar-brand" href="#">Mars Dashboard</a>
                   <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                      ${roverNames.map(NavBarItem).join("\n")}
+                      ${roverNames.map(NavBarItem).reduce(joinReducer)}
                   </ul>
               </div>
             </div>
